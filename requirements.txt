@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+google-generativeai
+python-dotenv
+requests
+pydantic
+python-dateutil
+tqdm
+cachetools
+anyio
+certifi
+click
+starlette
+typing-extensions

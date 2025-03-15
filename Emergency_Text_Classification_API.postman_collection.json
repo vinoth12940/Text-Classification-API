@@ -1,0 +1,537 @@
+{
+	"info": {
+		"_postman_id": "b4f5a9c1-3a4f-4e2e-9a7d-6b8c2d1e5f0a",
+		"name": "Emergency Text Classification API",
+		"description": "Test collection for the Emergency Text Classification API using Google's Gemini 2.0 Flash model.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8001/health",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"health"
+							]
+						},
+						"description": "Simple health check to verify the API is running correctly."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8001/health",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8001",
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"healthy\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Health check endpoint to verify API status."
+		},
+		{
+			"name": "Classification",
+			"item": [
+				{
+					"name": "Basic Text Classification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"There is a fire in the building at 123 Main Street. People are trapped on the second floor.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Basic text classification with just the message."
+					},
+					"response": []
+				},
+				{
+					"name": "Classification with Time",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Medical emergency at 456 Park Avenue. Elderly man having chest pains and difficulty breathing.\",\n    \"timestamp\": \"{{$isoTimestamp}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Text classification with timestamp information."
+					},
+					"response": []
+				},
+				{
+					"name": "Classification with Address",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Flooding in Downtown Central Park. Water levels rising quickly and people are stranded.\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"location\": {\n        \"address\": \"Central Park\",\n        \"city\": \"New York\",\n        \"country\": \"USA\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Text classification with address-based location information."
+					},
+					"response": []
+				},
+				{
+					"name": "Classification with GPS Coordinates",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Car accident on the highway with multiple injuries. Several vehicles involved, need urgent medical assistance.\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"location\": {\n        \"latitude\": 37.7749,\n        \"longitude\": -122.4194\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Text classification with GPS coordinate-based location information."
+					},
+					"response": []
+				},
+				{
+					"name": "Classification with Full Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Explosion at the mall, several people injured. Smoke everywhere and people are running towards the exits.\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"location\": {\n        \"address\": \"Westfield Shopping Center\",\n        \"city\": \"San Francisco\",\n        \"country\": \"USA\",\n        \"latitude\": 37.7833,\n        \"longitude\": -122.4167\n    },\n    \"user_id\": \"emergency-operator-123\",\n    \"context\": {\n        \"reporter_role\": \"security_personnel\",\n        \"priority\": \"high\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Text classification with all available data fields."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoint for classifying emergency text messages."
+		},
+		{
+			"name": "Special Scenarios",
+			"item": [
+				{
+					"name": "Public Event Emergency",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Stampede at the concert in the stadium. Multiple injuries reported as panic spreads through the crowd.\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"location\": {\n        \"address\": \"Oracle Park\",\n        \"city\": \"San Francisco\",\n        \"country\": \"USA\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Tests the web data integration feature with a public event emergency."
+					},
+					"response": []
+				},
+				{
+					"name": "Hospital Emergency",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Power outage at the hospital affecting critical care units. Backup generators failing. Need immediate assistance.\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"location\": {\n        \"address\": \"SF General Hospital\",\n        \"city\": \"San Francisco\",\n        \"country\": \"USA\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Tests the web data integration feature with a hospital emergency."
+					},
+					"response": []
+				},
+				{
+					"name": "Natural Disaster",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Earthquake just hit. Buildings shaking and some collapsing. Many people trapped in debris.\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"location\": {\n        \"latitude\": 37.7749,\n        \"longitude\": -122.4194\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Tests a natural disaster scenario."
+					},
+					"response": []
+				}
+			],
+			"description": "Special emergency scenarios to test specific features like web data integration."
+		},
+		{
+			"name": "Error Handling",
+			"item": [
+				{
+					"name": "Text Too Short",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Help\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Tests the error handling for messages that are too short."
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Location Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"There is a fire in the building. People are trapped on the second floor.\",\n    \"location\": {\n        \"latitude\": \"invalid-data\",\n        \"longitude\": -122.4194\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Tests the error handling for invalid location data."
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Timestamp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"There is a fire in the building. People are trapped on the second floor.\",\n    \"timestamp\": \"invalid-timestamp-format\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8001/classify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8001",
+							"path": [
+								"classify"
+							]
+						},
+						"description": "Tests the error handling for invalid timestamp format."
+					},
+					"response": []
+				}
+			],
+			"description": "Tests for error handling scenarios."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Response has required fields\", function () {",
+					"    if (pm.request.url.getPath() === '/health') {",
+					"        var jsonData = pm.response.json();",
+					"        pm.expect(jsonData).to.have.property('status');",
+					"        pm.expect(jsonData.status).to.equal('healthy');",
+					"    } else if (pm.request.url.getPath() === '/classify') {",
+					"        var jsonData = pm.response.json();",
+					"        pm.expect(jsonData).to.have.property('analysis');",
+					"    }",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8001",
+			"type": "string"
+		}
+	]
+} 
