@@ -13,11 +13,12 @@ A powerful text classification API using Google's Gemini 2.0 Flash model, enhanc
 
 ## Use Cases
 
-- **Emergency Response**: Analyzing incident reports and emergency messages
+- **Content Analysis**: Analyzing documents, articles, and reports
 - **Customer Service**: Classifying and prioritizing customer inquiries
 - **Content Moderation**: Identifying potentially problematic content
 - **Social Media Analysis**: Understanding trending topics and sentiment
 - **News Categorization**: Classifying news articles by topic and relevance
+- **Research Assistance**: Extracting key information from academic papers
 
 ## GitHub Repository
 
@@ -65,6 +66,31 @@ uvicorn app.main:app --reload --port 8000
 ```
 
 The API will be available at `http://127.0.0.1:8000`
+
+## API Documentation
+
+### Interactive Swagger UI
+
+Once the API is running, you can access the interactive Swagger UI documentation at:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+The Swagger UI provides:
+- Interactive documentation for all endpoints
+- Request and response schemas
+- The ability to test API endpoints directly from your browser
+- Examples of valid request bodies
+- Detailed descriptions of all parameters and models
+
+### Alternative Documentation (ReDoc)
+
+For an alternative documentation view, you can access the ReDoc interface at:
+
+```
+http://127.0.0.1:8000/redoc
+```
 
 ## API Usage
 
@@ -149,6 +175,34 @@ python -m app.utils.test_client "Your text to classify" --lat 37.7749 --lon -122
 
 A Postman collection is included in the repository for comprehensive API testing. See the `Postman_Testing_Guide.md` for detailed instructions.
 
+### Curl Examples
+
+Test the API from the command line:
+
+```bash
+# Basic test
+curl -X 'POST' \
+  'http://127.0.0.1:8000/classify' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "text": "Analysis needed for this important document about climate change policies in urban areas."
+}'
+
+# With location and timestamp
+curl -X 'POST' \
+  'http://127.0.0.1:8000/classify' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "text": "Analysis needed for this important document about climate change policies in urban areas.",
+  "timestamp": "2023-06-15T14:30:00",
+  "location": {
+    "address": "123 Main St",
+    "city": "San Francisco",
+    "country": "USA"
+  }
+}'
+```
+
 ## Architecture
 
 The system uses a pipeline architecture:
@@ -179,6 +233,14 @@ Please follow these guidelines:
 - Follow the existing code style
 - Add tests for new features
 - Update documentation as needed
+
+## Technologies Used
+
+- **FastAPI**: Modern, high-performance web framework for building APIs
+- **Google Gemini AI**: State-of-the-art large language model for text analysis
+- **Pydantic**: Data validation and settings management
+- **Uvicorn**: ASGI server for FastAPI
+- **Python 3.9+**: Modern Python for robust development
 
 ## License
 
