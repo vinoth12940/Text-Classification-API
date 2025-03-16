@@ -19,6 +19,12 @@ A powerful text classification API using Google's Gemini 2.0 Flash model, enhanc
 - **Social Media Analysis**: Understanding trending topics and sentiment
 - **News Categorization**: Classifying news articles by topic and relevance
 
+## GitHub Repository
+
+- **Repository**: [https://github.com/vinoth12940/Text-Classification-API](https://github.com/vinoth12940/Text-Classification-API)
+- **Clone URL**: `git clone https://github.com/vinoth12940/Text-Classification-API.git`
+- **Issues**: Report bugs or suggest features in the [Issues section](https://github.com/vinoth12940/Text-Classification-API/issues)
+
 ## Setup Instructions
 
 ### Prerequisites
@@ -31,8 +37,8 @@ A powerful text classification API using Google's Gemini 2.0 Flash model, enhanc
 
 1. Clone the repository
    ```bash
-   git clone <repository-url>
-   cd Text_Classification
+   git clone https://github.com/vinoth12940/Text-Classification-API.git
+   cd Text-Classification-API
    ```
 
 2. Create a virtual environment
@@ -156,11 +162,23 @@ The system uses a pipeline architecture:
 
 The API intelligently determines when to fetch web data based on content keywords and context. This provides additional information for more accurate classification and insights.
 
-## Notes
+## Contributing
 
-- The Gemini API requires a valid API key from Google AI Studio
-- For production use, implement appropriate security measures and rate limiting
-- Consider privacy implications when processing location data or personal information
+Contributions are welcome! Here's how you can contribute:
+
+1. **Fork the Repository**: Click the "Fork" button at the top right of the [repository page](https://github.com/vinoth12940/Text-Classification-API)
+2. **Clone Your Fork**: `git clone https://github.com/YOUR-USERNAME/Text-Classification-API.git`
+3. **Create a Branch**: `git checkout -b feature/your-feature-name`
+4. **Make Changes**: Implement your changes or fixes
+5. **Run Tests**: Ensure all tests pass
+6. **Commit Changes**: `git commit -m "Description of changes"`
+7. **Push to GitHub**: `git push origin feature/your-feature-name`
+8. **Create a Pull Request**: Submit a PR through the GitHub interface
+
+Please follow these guidelines:
+- Follow the existing code style
+- Add tests for new features
+- Update documentation as needed
 
 ## License
 
